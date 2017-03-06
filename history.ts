@@ -1,13 +1,15 @@
-
-History = (function () {
+'use strict';
+class History {
     'use strict';
 
-    function History() {
+      back;
+      forward;
+    constructor() {
         this.back = [];
         this.forward=[];
     };
 
-    History.prototype.goBack= function () {
+    goBack() {
         if (this.back.length==0) {
             return -1;
         }
@@ -16,7 +18,7 @@ History = (function () {
 
     };
 
-    History.prototype.goForward= function () {
+    goForward() {
         if (this.forward.length==0){
             return -1;
         }
@@ -25,29 +27,22 @@ History = (function () {
 
     };
 
-    History.prototype.addToHistory= function (id) {
+    addToHistory(id) {
         this.back.push(id);
 
     };
 
-    History.prototype.addToBack=function (id){
+    addToBack(id){
         this.back.push(id);
 
     };
 
-    History.prototype.addToForward=function(id){
+    addToForward(id){
         this.forward.push(id);
 
     };
 
-
-
-
-
-
-
-    return History;
-})();
+};
 
 //
 // History*************************************

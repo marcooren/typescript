@@ -1,4 +1,4 @@
-
+'use strict';
 
 function reBuildTree() {
     var newArray = JSON.parse(localStorage.getItem("oldstorage").toString());

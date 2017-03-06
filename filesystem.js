@@ -1,7 +1,8 @@
 /**
  * Created by marco on 22/02/2017.
  */
-FileSystem = (function () {
+'use strict';
+var FileSystem = (function () {
     'use strict';
     function FileSystem() {
         this.lastId = 0;

@@ -1,7 +1,7 @@
 /**
  * Created by marco on 22/02/2017.
  */
-
+'use strict';
 
 class File {
     'use strict';

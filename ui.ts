@@ -2,7 +2,8 @@
  * Created by marco on 22/02/2017.
  */
 
-
+'use strict';
+declare var $;
 $(".custom-menu li").click(function() {
 
     switch ($(this).attr("data-action")) {
@@ -10,7 +11,7 @@ $(".custom-menu li").click(function() {
 
         case "1":
 
-            var folderName = prompt("Enter folder name to create", "newfolder"+Fs.lastId++);
+            let folderName = prompt("Enter folder name to create", "newfolder"+Fs.lastId++);
 
             if (folderName !== null && folderName !== '') {
                 if (!Fs.addFolder(folderName, currentFolder))
@@ -25,7 +26,7 @@ $(".custom-menu li").click(function() {
             break;
 
         case "2":
-            var fileName = prompt("Enter a file name to create", "newfile.txt"+Fs.lastId++);
+            let fileName = prompt("Enter a file name to create", "newfile.txt"+Fs.lastId++);
             if (fileName !== null && fileName !== '') {
                 if (!Fs.addFile(fileName,currentFolder,"#"))
                     alert("there is already a file or folder in current dir with that name");
@@ -66,7 +67,7 @@ function right(id) {
             return;
 
         if (Fs.getItem(id).children) {
-            for (var i = 0; i < Fs.getItem(id).children.length; i++) {
+            for (let i = 0; i < Fs.getItem(id).children.length; i++) {
 
                 if(Fs.getItem(id).children[i].getType()=='folder'){
                     //print folder
@@ -88,7 +89,7 @@ function right(id) {
     $('.right_view [class^="right"]').click(function(event) {
         event.stopPropagation();
         //console.log(($(this).attr('class').replace("right", '')));
-        var myClick = +($(this).attr('class').replace("right", ''));
+        let myClick = +($(this).attr('class').replace("right", ''));
         console.log(myClick);
 
         if(Fs.getItem(myClick).getType()=='folder') {
@@ -106,7 +107,7 @@ function right(id) {
     $('.right_view [class^="right"]').on("contextmenu", function(event) {
         event.stopPropagation();
         event.preventDefault();
-        myClick = +($(this).attr('class').replace("right", ''));
+        let myClick = +($(this).attr('class').replace("right", ''));
         oldClick=myClick;
 
         $(".custom-menu2").finish().toggle(100).css({
@@ -198,7 +199,7 @@ function left() {
     $('.left_view [class^="left"]').click(function(event) {
         event.stopPropagation();
         console.log(($(this).attr('class').replace("left", '')));
-        var myclick = +($(this).attr('class').replace("left", ''));
+        let myclick = +($(this).attr('class').replace("left", ''));
 
 
         if(myclick!=currentFolder) {
@@ -219,9 +220,9 @@ function left() {
     $('.left_view [class^="left"] img').click(function(event) {
         event.stopPropagation();
         // var number =
-        var close_icon = './images/closed_dirs.jpg';
-        var open_icon = './images/open_dirs.jpg';
-        var changed = 0;
+        let close_icon = './images/closed_dirs.jpg';
+        let open_icon = './images/open_dirs.jpg';
+        let changed = 0;
         if ($(this).attr('src') == close_icon && changed == 0) {
 
             $(this).attr('src', open_icon);
@@ -250,7 +251,7 @@ function left() {
 
 
 function drawNav() {
-    var nav_menu = '<div class="main_menu"></div><button class="back">Back</button>' +
+    let nav_menu = '<div class="main_menu"></div><button class="back">Back</button>' +
         '<button class="forward">Forward</button>Location:<input type="text" class="path" name="path" value="' + "root" + '"><button class="goto">Goto</button></div>';
     $('.top').empty();
     //console.log(currentFolder);
@@ -259,8 +260,8 @@ function drawNav() {
     // $('.path').val(currentFolder);
     $('.goto').click(function(event){
         event.stopPropagation();
-        var test=$('.path').val();
-        var newPath=test.split('\\');
+        let test=$('.path').val();
+        let newPath=test.split('\\');
         if(newPath[newPath.length-1]=='')
             newPath.splice(newPath.length-1,1);
         if(newPath.length==1 && newPath[0]=='root'){
@@ -286,7 +287,7 @@ function drawNav() {
         // }(newPath));
 
         (function check_path(mypath){
-            var lastId=-1
+            let lastId=-1
             passOn2(Fs.root.children,mypath,0);
 
 
@@ -294,7 +295,7 @@ function drawNav() {
                 if(myparent.length<=x) {
                     return;
                 }
-                for (var i = 0; i < myArray.length; i++) {
+                for (let i = 0; i < myArray.length; i++) {
                     if(myArray[i].name==myparent[x+1]){
                         if(myArray[i].children) {
                             console.log(myArray[i].id);
@@ -330,7 +331,7 @@ function drawNav() {
 
     $('.back').click(function(event) {
         event.stopPropagation();
-        var temp=Hi.goBack();
+        let temp=Hi.goBack();
         console.log(temp);
         if(!Fs.getItem(temp)){
             return;
@@ -347,7 +348,7 @@ function drawNav() {
 
     $('.forward').click(function(event) {
         event.stopPropagation();
-        var temp=Hi.goForward();
+        let temp=Hi.goForward();
         console.log(temp);
         if(!Fs.getItem(temp)){
             return;

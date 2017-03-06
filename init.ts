@@ -1,8 +1,8 @@
+'use strict';
 
 
-
-var Fs=new FileSystem();
-var Hi=new History();
+let Fs=new FileSystem();
+let Hi=new History();
 
 $('.views').on("contextmenu", function(event) {
 
